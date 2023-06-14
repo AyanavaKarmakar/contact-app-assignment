@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { ScrollView, StyleSheet, Text, View } from 'react-native'
 import { useQuery } from '@tanstack/react-query'
 import { Card } from './card'
 import type { IContact } from '../../types/contact'
@@ -47,20 +47,19 @@ export function Container() {
   }
 
   return (
-    <>
+    <ScrollView>
       {contactList.map((contact: IContact) => (
         <Card key={contact.index} {...contact} />
       ))}
-    </>
+    </ScrollView>
   )
 }
 
 const styles = StyleSheet.create({
   loadingContainer: {
-    display: 'flex',
+    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    height: '75vh',
   },
 
   loadingText: {
@@ -70,10 +69,9 @@ const styles = StyleSheet.create({
   },
 
   errorContainer: {
-    display: 'flex',
+    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    height: '75vh',
   },
 
   errorText: {
