@@ -1,22 +1,26 @@
 import { StyleSheet, View } from 'react-native'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ContactList, SearchBar } from './components'
+import { Provider } from 'react-redux'
+import { store } from './redux/store'
 
 const queryClient = new QueryClient()
 
 export default function App() {
   return (
-    <QueryClientProvider client={queryClient}>
-      <View style={styles.container}>
-        <View style={styles.searchContainer}>
-          <SearchBar />
-        </View>
+    <Provider store={store}>
+      <QueryClientProvider client={queryClient}>
+        <View style={styles.container}>
+          <View style={styles.searchContainer}>
+            <SearchBar />
+          </View>
 
-        <View style={styles.contactListContainer}>
-          <ContactList />
+          <View style={styles.contactListContainer}>
+            <ContactList />
+          </View>
         </View>
-      </View>
-    </QueryClientProvider>
+      </QueryClientProvider>
+    </Provider>
   )
 }
 

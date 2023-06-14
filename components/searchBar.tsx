@@ -1,12 +1,15 @@
-import { useReducer } from 'react'
 import { View, TextInput, StyleSheet } from 'react-native'
 import { AntDesign, FontAwesome } from '@expo/vector-icons'
+import { useDispatch, useSelector } from 'react-redux'
+import type { RootState } from '../redux/store'
+import { changeSortType } from '../redux/searchBar/searchBarSortTypeSlice'
 
 export function SearchBar() {
-  const [sortOption, changeSortOption] = useReducer(
-    (state: 'asc' | 'desc') => (state === 'asc' ? 'desc' : 'asc'),
-    'asc',
+  const sortType = useSelector(
+    (state: RootState) => state.sortTypeReducer.sortType,
   )
+
+  const dispatch = useDispatch()
 
   return (
     <View style={styles.container}>
@@ -25,8 +28,10 @@ export function SearchBar() {
         />
 
         <FontAwesome
-          name={`sort-amount-${sortOption}`}
-          onPress={changeSortOption}
+          name={sortType === 'asc' ? 'sort-amount-asc' : 'sort-amount-desc'}
+          onPress={() =>
+            dispatch(changeSortType(sortType === 'asc' ? 'desc' : 'asc'))
+          }
           size={20}
           color="#000"
           style={styles.sortIcon}
