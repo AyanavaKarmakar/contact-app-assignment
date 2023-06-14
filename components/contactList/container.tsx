@@ -20,13 +20,10 @@ async function fetchContacts(): Promise<IContact[]> {
 }
 
 export function Container() {
-  const sortType = useSelector(
-    (state: RootState) => state.sortTypeReducer.sortType,
-  )
-
-  const searchQuery = useSelector(
-    (state: RootState) => state.searchQueryReducer.searchQuery,
-  )
+  const [searchQuery, sortType] = useSelector((state: RootState) => [
+    state.searchBarReducer.searchQuery,
+    state.searchBarReducer.sortType,
+  ])
 
   const {
     data: contactList,

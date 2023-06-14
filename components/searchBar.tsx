@@ -2,12 +2,11 @@ import { View, TextInput, StyleSheet } from 'react-native'
 import { AntDesign, FontAwesome } from '@expo/vector-icons'
 import { useDispatch, useSelector } from 'react-redux'
 import type { RootState } from '../redux/store'
-import { changeSortType } from '../redux/searchBar/searchBarSortTypeSlice'
-import { findConnection } from '../redux/searchBar/searchBarFindConnectionSlice'
+import { findConnection, changeSortType } from '../redux/SearchBarSlice'
 
 export function SearchBar() {
   const sortType = useSelector(
-    (state: RootState) => state.sortTypeReducer.sortType,
+    (state: RootState) => state.searchBarReducer.sortType,
   )
 
   const dispatch = useDispatch()

@@ -1,11 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit'
-import changeSortTypeReducer from './searchBar/searchBarSortTypeSlice'
-import searchQueryReducer from './searchBar/searchBarFindConnectionSlice'
+import searchBarReducer from './SearchBarSlice'
 
 export const store = configureStore({
   reducer: {
-    sortTypeReducer: changeSortTypeReducer,
-    searchQueryReducer: searchQueryReducer,
+    searchBarReducer: searchBarReducer,
   },
 })
 
