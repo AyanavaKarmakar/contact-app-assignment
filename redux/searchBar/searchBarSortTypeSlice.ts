@@ -9,7 +9,7 @@ const initialState: SortTypeState = {
   sortType: 'asc',
 }
 
-export const counterSlice = createSlice({
+export const searchBarSortTypeSlice = createSlice({
   name: 'sortType',
   initialState,
   reducers: {
@@ -19,6 +19,6 @@ export const counterSlice = createSlice({
   },
 })
 
-export const { changeSortType } = counterSlice.actions
+export const { changeSortType } = searchBarSortTypeSlice.actions
 
-export default counterSlice.reducer
+export default searchBarSortTypeSlice.reducer

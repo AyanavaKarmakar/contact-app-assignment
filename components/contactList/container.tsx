@@ -24,6 +24,10 @@ export function Container() {
     (state: RootState) => state.sortTypeReducer.sortType,
   )
 
+  const searchQuery = useSelector(
+    (state: RootState) => state.searchQueryReducer.searchQuery,
+  )
+
   const {
     data: contactList,
     isLoading,
@@ -35,21 +39,25 @@ export function Container() {
   })
 
   /**
-   * @param contacts contacts to be sorted
-   * @returns sorted contacts
+   * @param contacts contacts to be sorted & filtered
+   * @returns sorted & filtered contacts
    */
-  function sortContacts(contacts: IContact[]): IContact[] {
-    return contacts.sort((a, b) => {
-      if (a.firstname === b.firstname) {
-        return sortType === 'asc'
-          ? a.surname.localeCompare(b.surname)
-          : b.surname.localeCompare(a.surname)
-      } else {
-        return sortType === 'asc'
-          ? a.firstname.localeCompare(b.firstname)
-          : b.firstname.localeCompare(a.firstname)
-      }
-    })
+  function sortedAndFilteredContacts(contacts: IContact[]): IContact[] {
+    return contacts
+      .filter((contact) =>
+        contact.firstname.toLowerCase().includes(searchQuery.toLowerCase()),
+      )
+      .sort((a, b) => {
+        if (a.firstname === b.firstname) {
+          return sortType === 'asc'
+            ? a.surname.localeCompare(b.surname)
+            : b.surname.localeCompare(a.surname)
+        } else {
+          return sortType === 'asc'
+            ? a.firstname.localeCompare(b.firstname)
+            : b.firstname.localeCompare(a.firstname)
+        }
+      })
   }
 
   if (isLoading) {
@@ -72,7 +80,7 @@ export function Container() {
 
   return (
     <ScrollView>
-      {sortContacts(contactList).map((contact: IContact) => (
+      {sortedAndFilteredContacts(contactList).map((contact: IContact) => (
         <Card key={contact.index} {...contact} />
       ))}
     </ScrollView>

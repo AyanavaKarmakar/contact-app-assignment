@@ -3,6 +3,7 @@ import { AntDesign, FontAwesome } from '@expo/vector-icons'
 import { useDispatch, useSelector } from 'react-redux'
 import type { RootState } from '../redux/store'
 import { changeSortType } from '../redux/searchBar/searchBarSortTypeSlice'
+import { findConnection } from '../redux/searchBar/searchBarFindConnectionSlice'
 
 export function SearchBar() {
   const sortType = useSelector(
@@ -25,6 +26,7 @@ export function SearchBar() {
           style={styles.input}
           placeholder="Search"
           placeholderTextColor="#000000"
+          onChangeText={(query: string) => dispatch(findConnection(query))}
         />
 
         <FontAwesome
