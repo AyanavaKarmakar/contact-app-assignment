@@ -1,4 +1,3 @@
-import { StatusBar } from 'expo-status-bar'
 import { StyleSheet, View } from 'react-native'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { SearchBar } from './components'
@@ -12,8 +11,6 @@ export default function App() {
         <View style={styles.searchContainer}>
           <SearchBar />
         </View>
-
-        <StatusBar style="auto" />
       </View>
     </QueryClientProvider>
   )
