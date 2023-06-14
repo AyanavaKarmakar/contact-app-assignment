@@ -1,8 +1,13 @@
-import React from 'react'
+import { useReducer } from 'react'
 import { View, TextInput, StyleSheet } from 'react-native'
 import { AntDesign, FontAwesome } from '@expo/vector-icons'
 
 export function SearchBar() {
+  const [sortOption, changeSortOption] = useReducer(
+    (state: 'asc' | 'desc') => (state === 'asc' ? 'desc' : 'asc'),
+    'asc',
+  )
+
   return (
     <View style={styles.container}>
       <View style={styles.searchSection}>
@@ -19,9 +24,9 @@ export function SearchBar() {
           placeholderTextColor="#000000"
         />
 
-        {/* use 'sort-amount-asc' when sort option is flipped */}
         <FontAwesome
-          name="sort-amount-desc"
+          name={`sort-amount-${sortOption}`}
+          onPress={changeSortOption}
           size={20}
           color="#000"
           style={styles.sortIcon}
