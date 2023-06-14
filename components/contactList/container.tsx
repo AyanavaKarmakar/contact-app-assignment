@@ -2,6 +2,8 @@ import { ScrollView, StyleSheet, Text, View } from 'react-native'
 import { useQuery } from '@tanstack/react-query'
 import { Card } from './card'
 import type { IContact } from '../../types/contact'
+import { useSelector } from 'react-redux'
+import type { RootState } from '../../redux/store'
 
 async function fetchContacts(): Promise<IContact[]> {
   const response = await fetch(
@@ -18,15 +20,37 @@ async function fetchContacts(): Promise<IContact[]> {
 }
 
 export function Container() {
+  const sortType = useSelector(
+    (state: RootState) => state.sortTypeReducer.sortType,
+  )
+
   const {
     data: contactList,
     isLoading,
     isError,
   } = useQuery<IContact[], Error>({
-    enabled: true,
     queryKey: ['fetchContacts'],
     queryFn: fetchContacts,
+    enabled: true,
   })
+
+  /**
+   * @param contacts contacts to be sorted
+   * @returns sorted contacts
+   */
+  function sortContacts(contacts: IContact[]): IContact[] {
+    return contacts.sort((a, b) => {
+      if (a.firstname === b.firstname) {
+        return sortType === 'asc'
+          ? a.surname.localeCompare(b.surname)
+          : b.surname.localeCompare(a.surname)
+      } else {
+        return sortType === 'asc'
+          ? a.firstname.localeCompare(b.firstname)
+          : b.firstname.localeCompare(a.firstname)
+      }
+    })
+  }
 
   if (isLoading) {
     return (
@@ -48,7 +72,7 @@ export function Container() {
 
   return (
     <ScrollView>
-      {contactList.map((contact: IContact) => (
+      {sortContacts(contactList).map((contact: IContact) => (
         <Card key={contact.index} {...contact} />
       ))}
     </ScrollView>

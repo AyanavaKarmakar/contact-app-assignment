@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
 
 export interface SortTypeState {
-  sortType: string
+  sortType: 'asc' | 'desc'
 }
 
 const initialState: SortTypeState = {
@@ -13,7 +13,7 @@ export const counterSlice = createSlice({
   name: 'sortType',
   initialState,
   reducers: {
-    changeSortType: (state, action: PayloadAction<string>) => {
+    changeSortType: (state, action: PayloadAction<'asc' | 'desc'>) => {
       state.sortType = action.payload
     },
   },
