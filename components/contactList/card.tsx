@@ -1,18 +1,21 @@
 import React from 'react'
 import { View, Text, Image, StyleSheet } from 'react-native'
+import type { IContact } from '../../types/contact'
 
-export function Card() {
+export function Card(props: IContact) {
+  const { picture, age, firstname, surname, gender, company, email, phone } =
+    props
+
+  console.log(age, surname, gender, email)
+
   return (
     <View style={styles.container}>
-      <Image
-        source={{ uri: 'http://placehold.it/32x32' }}
-        style={styles.image}
-      />
+      <Image source={{ uri: picture }} style={styles.image} />
 
       <View style={styles.details}>
-        <Text style={styles.name}>Name</Text>
-        <Text style={styles.companyName}>Company Name</Text>
-        <Text style={styles.contactEmail}>+1-982-496-2907</Text>
+        <Text style={styles.name}>{firstname}</Text>
+        <Text style={styles.companyName}>{company}</Text>
+        <Text style={styles.contactEmail}>{phone}</Text>
       </View>
     </View>
   )
