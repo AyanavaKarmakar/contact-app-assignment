@@ -3,19 +3,17 @@ import { View, Text, Image, StyleSheet } from 'react-native'
 import type { IContact } from '../../types/contact'
 
 export function Card(props: IContact) {
-  const { picture, age, firstname, surname, gender, company, email, phone } =
-    props
-
-  console.log(age, surname, gender, email)
+  const { picture, firstname, surname, company, email, phone } = props
 
   return (
     <View style={styles.container}>
       <Image source={{ uri: picture }} style={styles.image} />
 
       <View style={styles.details}>
-        <Text style={styles.name}>{firstname}</Text>
+        <Text style={styles.name}>{`${firstname} ${surname}`}</Text>
         <Text style={styles.companyName}>{company}</Text>
-        <Text style={styles.contactEmail}>{phone}</Text>
+        <Text style={styles.contact}>{phone}</Text>
+        <Text style={styles.contact}>{email}</Text>
       </View>
     </View>
   )
@@ -55,7 +53,7 @@ const styles = StyleSheet.create({
     marginBottom: 2,
   },
 
-  contactEmail: {
+  contact: {
     fontSize: 16,
     color: '#666666',
   },

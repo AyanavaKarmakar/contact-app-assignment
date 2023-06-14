@@ -63,8 +63,9 @@ const styles = StyleSheet.create({
   },
 
   loadingText: {
+    marginTop: 20,
     textAlign: 'center',
-    fontSize: 30,
+    fontSize: 25,
     fontWeight: 'bold',
   },
 
@@ -75,8 +76,9 @@ const styles = StyleSheet.create({
   },
 
   errorText: {
+    marginTop: 20,
     textAlign: 'center',
-    fontSize: 30,
+    fontSize: 25,
     color: 'red',
     fontWeight: 'bold',
   },
