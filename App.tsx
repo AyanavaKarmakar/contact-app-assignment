@@ -12,7 +12,9 @@ export default function App() {
           <SearchBar />
         </View>
 
-        <ContactList />
+        <View style={styles.contactListContainer}>
+          <ContactList />
+        </View>
       </View>
     </QueryClientProvider>
   )
@@ -23,11 +25,16 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
     justifyContent: 'flex-start',
-    alignItems: 'baseline',
+    alignItems: 'center',
     paddingTop: 20,
   },
 
   searchContainer: {
     width: '100%',
+  },
+
+  contactListContainer: {
+    width: '100%',
+    marginVertical: 12,
   },
 })

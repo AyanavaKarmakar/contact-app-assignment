@@ -37,6 +37,7 @@ const styles = StyleSheet.create({
 
   details: {
     marginLeft: 25,
+    marginRight: 'auto',
   },
 
   name: {
