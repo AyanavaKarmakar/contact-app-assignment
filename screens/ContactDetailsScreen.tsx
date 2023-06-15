@@ -20,12 +20,14 @@ export function ContactDetailsScreen({ navigation }: Props) {
           <Image style={styles.picture} source={{ uri: picture }} />
         </View>
 
-        <Text>{`${firstname} ${surname}`}</Text>
-        <Text>{`Age: ${age}`}</Text>
-        <Text>{`Gender: ${gender}`}</Text>
-        <Text>{`Company: ${company}`}</Text>
-        <Text>{`Email: ${email}`}</Text>
-        <Text>{`Phone: ${phone}`}</Text>
+        <Text style={styles.nameText}>{`${firstname} ${surname}`}</Text>
+
+        <Text
+          style={styles.ageGenderCompanyText}
+        >{`${gender} — ${age} @ ${company}`}</Text>
+
+        <Text style={styles.emailText}>{email}</Text>
+        <Text style={styles.phoneText}>{phone}</Text>
       </View>
 
       <TouchableOpacity
@@ -69,11 +71,42 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.2,
     shadowRadius: 4,
     elevation: 4,
-    paddingVertical: 100,
-    paddingHorizontal: 70,
-    borderRadius: 5,
-    marginBottom: 16,
+    paddingVertical: 120,
+    paddingHorizontal: 32,
+    borderRadius: 10,
+    marginBottom: 20,
     width: 350,
+  },
+
+  nameText: {
+    fontSize: 30,
+    fontWeight: 'bold',
+    marginTop: 12,
+    textAlign: 'center',
+    textTransform: 'capitalize',
+    color: '#000',
+  },
+
+  ageGenderCompanyText: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    textTransform: 'capitalize',
+    color: 'blue',
+    marginBottom: 12,
+  },
+
+  emailText: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    marginBottom: 5,
+  },
+
+  phoneText: {
+    fontSize: 22,
+    fontWeight: 'bold',
+    textAlign: 'center',
   },
 
   button: {
