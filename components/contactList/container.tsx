@@ -1,10 +1,10 @@
 import { ScrollView, StyleSheet, Text, View } from 'react-native'
 import type { ContactListScreenNavigationProp } from '../../types/navigation'
-import type { RootState } from '../../redux/store'
 import type { IContact } from '../../types/contact'
 import { useSelector } from 'react-redux'
 import { useQuery } from '@tanstack/react-query'
 import { Card } from './card'
+import { makeSelectSortedAndFilteredContacts } from '../../redux/searchBarSelectors'
 
 async function fetchContacts(): Promise<IContact[]> {
   const response = await fetch(
@@ -25,11 +25,6 @@ interface Props {
 }
 
 export function Container({ navigation }: Props) {
-  const [searchQuery, sortType] = useSelector((state: RootState) => [
-    state.searchBarReducer.searchQuery,
-    state.searchBarReducer.sortType,
-  ])
-
   const {
     data: contactList,
     isLoading,
@@ -41,26 +36,10 @@ export function Container({ navigation }: Props) {
   })
 
   /**
-   * @param contacts contacts to be sorted & filtered
-   * @returns sorted & filtered contacts
+   * memoized selector to sort and filter contacts based on the search text & sort order
    */
-  function sortedAndFilteredContacts(contacts: IContact[]): IContact[] {
-    return contacts
-      .filter((contact) =>
-        contact.firstname.toLowerCase().includes(searchQuery.toLowerCase()),
-      )
-      .sort((a, b) => {
-        if (a.firstname === b.firstname) {
-          return sortType === 'asc'
-            ? a.surname.localeCompare(b.surname)
-            : b.surname.localeCompare(a.surname)
-        } else {
-          return sortType === 'asc'
-            ? a.firstname.localeCompare(b.firstname)
-            : b.firstname.localeCompare(a.firstname)
-        }
-      })
-  }
+  const contactsSelector = makeSelectSortedAndFilteredContacts(contactList)
+  const sortedAndFilteredContacts = useSelector(contactsSelector)
 
   if (isLoading) {
     return (
@@ -82,7 +61,7 @@ export function Container({ navigation }: Props) {
 
   return (
     <ScrollView>
-      {sortedAndFilteredContacts(contactList).map((contact: IContact) => (
+      {sortedAndFilteredContacts.map((contact: IContact) => (
         <Card key={contact.index} {...contact} navigation={navigation} />
       ))}
     </ScrollView>
