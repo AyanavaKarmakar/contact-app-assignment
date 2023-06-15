@@ -32,7 +32,7 @@ export function ContactDetailsScreen({ navigation }: Props) {
 
       <TouchableOpacity
         style={styles.button}
-        onPress={() => navigation.navigate('ContactListScreen')}
+        onPress={() => navigation.goBack()}
       >
         <Text style={styles.buttonText}>Go Back</Text>
       </TouchableOpacity>
