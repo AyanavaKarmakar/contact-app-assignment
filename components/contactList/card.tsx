@@ -12,7 +12,7 @@ export function Card(props: Props) {
 
   return (
     <TouchableOpacity
-      onPress={() => navigation.navigate('ContactDetailsScreen')}
+      onPress={() => navigation.navigate('ContactDetailsScreen', props)}
     >
       <View style={styles.container}>
         <Image source={{ uri: picture }} style={styles.image} />
