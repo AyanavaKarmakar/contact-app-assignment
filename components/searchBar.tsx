@@ -1,8 +1,8 @@
-import { View, TextInput, StyleSheet } from 'react-native'
-import { AntDesign, FontAwesome } from '@expo/vector-icons'
-import { useDispatch, useSelector } from 'react-redux'
-import type { RootState } from '../redux/store'
 import { findConnection, changeSortType } from '../redux/SearchBarSlice'
+import { View, TextInput, StyleSheet } from 'react-native'
+import { useDispatch, useSelector } from 'react-redux'
+import { AntDesign, FontAwesome } from '@expo/vector-icons'
+import type { RootState } from '../redux/store'
 
 export function SearchBar() {
   const sortType = useSelector(

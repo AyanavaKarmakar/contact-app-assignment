@@ -1,21 +1,30 @@
-import React from 'react'
-import { View, Text, Image, StyleSheet } from 'react-native'
+import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native'
+import type { ContactListScreenNavigationProp } from '../../types/navigation'
 import type { IContact } from '../../types/contact'
 
-export function Card(props: IContact) {
-  const { picture, firstname, surname, company, email, phone } = props
+interface Props extends IContact {
+  navigation: ContactListScreenNavigationProp
+}
+
+export function Card(props: Props) {
+  const { navigation, picture, firstname, surname, company, email, phone } =
+    props
 
   return (
-    <View style={styles.container}>
-      <Image source={{ uri: picture }} style={styles.image} />
+    <TouchableOpacity
+      onPress={() => navigation.navigate('ContactDetailsScreen')}
+    >
+      <View style={styles.container}>
+        <Image source={{ uri: picture }} style={styles.image} />
 
-      <View style={styles.details}>
-        <Text style={styles.name}>{`${firstname} ${surname}`}</Text>
-        <Text style={styles.companyName}>{company}</Text>
-        <Text style={styles.contact}>{phone}</Text>
-        <Text style={styles.contact}>{email}</Text>
+        <View style={styles.details}>
+          <Text style={styles.name}>{`${firstname} ${surname}`}</Text>
+          <Text style={styles.companyName}>{company}</Text>
+          <Text style={styles.contact}>{phone}</Text>
+          <Text style={styles.contact}>{email}</Text>
+        </View>
       </View>
-    </View>
+    </TouchableOpacity>
   )
 }
 

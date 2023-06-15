@@ -1,9 +1,10 @@
 import { ScrollView, StyleSheet, Text, View } from 'react-native'
-import { useQuery } from '@tanstack/react-query'
-import { Card } from './card'
+import type { ContactListScreenNavigationProp } from '../../types/navigation'
+import type { RootState } from '../../redux/store'
 import type { IContact } from '../../types/contact'
 import { useSelector } from 'react-redux'
-import type { RootState } from '../../redux/store'
+import { useQuery } from '@tanstack/react-query'
+import { Card } from './card'
 
 async function fetchContacts(): Promise<IContact[]> {
   const response = await fetch(
@@ -19,7 +20,11 @@ async function fetchContacts(): Promise<IContact[]> {
   return data as IContact[]
 }
 
-export function Container() {
+interface Props {
+  navigation: ContactListScreenNavigationProp
+}
+
+export function Container({ navigation }: Props) {
   const [searchQuery, sortType] = useSelector((state: RootState) => [
     state.searchBarReducer.searchQuery,
     state.searchBarReducer.sortType,
@@ -78,7 +83,7 @@ export function Container() {
   return (
     <ScrollView>
       {sortedAndFilteredContacts(contactList).map((contact: IContact) => (
-        <Card key={contact.index} {...contact} />
+        <Card key={contact.index} {...contact} navigation={navigation} />
       ))}
     </ScrollView>
   )
