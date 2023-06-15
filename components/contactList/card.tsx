@@ -7,12 +7,34 @@ interface Props extends IContact {
 }
 
 export function Card(props: Props) {
-  const { navigation, picture, firstname, surname, company, email, phone } =
-    props
+  const {
+    navigation,
+    picture,
+    firstname,
+    surname,
+    company,
+    email,
+    phone,
+    index,
+    gender,
+    age,
+  } = props
 
   return (
     <TouchableOpacity
-      onPress={() => navigation.navigate('ContactDetailsScreen', props)}
+      onPress={() =>
+        navigation.navigate('ContactDetailsScreen', {
+          picture,
+          firstname,
+          surname,
+          company,
+          email,
+          phone,
+          index,
+          gender,
+          age,
+        })
+      }
     >
       <View style={styles.container}>
         <Image source={{ uri: picture }} style={styles.image} />
