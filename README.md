@@ -29,17 +29,17 @@
 
 1. Contacts sorted in ascending order
 
-![image](https://github.com/AyanavaKarmakar/contact-app-assignment/assets/89210438/678a35b4-e298-432f-89d3-4ad13bd4bfa9)
+![image](https://media.discordapp.net/attachments/1087700436003328032/1118906337254977626/Screenshot_20230615_194309_Expo_Go.png?width=268&height=597)
 
 2. Contacts sorted in descending order
 
-![image](https://github.com/AyanavaKarmakar/contact-app-assignment/assets/89210438/f4ebf883-a4a8-47ae-8a98-f6614c446a34)
+![image](https://media.discordapp.net/attachments/1087700436003328032/1118906338341290197/Screenshot_20230615_194316_Expo_Go.png?width=268&height=597)
 
 3. Filtering users
 
-![image](https://github.com/AyanavaKarmakar/contact-app-assignment/assets/89210438/38ae58c0-3443-4d6a-b34c-741c32c60363)
+![image](https://media.discordapp.net/attachments/1087700436003328032/1118906337959624744/Screenshot_20230615_194330_Expo_Go.png?width=268&height=597)
 
 4. Contact details
 
-![image](https://github.com/AyanavaKarmakar/contact-app-assignment/assets/89210438/e2cd6599-ebe2-4747-bc52-fb178306de6a)
+![image](https://media.discordapp.net/attachments/1087700436003328032/1118906337565343754/Screenshot_20230615_194341_Expo_Go.png?width=268&height=597)
 
