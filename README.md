@@ -5,6 +5,8 @@
 - React Navigation
 - Redux Toolkit
 - React Query
+- Eslint
+- Prettier
 
 ### Getting Started
 
